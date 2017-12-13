@@ -122,7 +122,7 @@ module.exports = function(grunt) {
 		grunt.registerTask('lint', ['eslint']);
 	
 		// Build task
-		grunt.registerTask('build', ['clean', 'openui5_preload', 'copy:demo', 'copy:demo_legacy', 'copy:demo_1_50']);
+		grunt.registerTask('build', ['clean', 'openui5_preload', 'copy:demo_1_49', 'copy:demo_legacy', 'copy:demo_1_33']);
 	
 		// Default task
 		grunt.registerTask('default', [

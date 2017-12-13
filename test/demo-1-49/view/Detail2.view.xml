@@ -1,0 +1,21 @@
+<View
+	xmlns="sap.m"
+	xmlns:layout="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form"
+	controllerName="demo.controller.Detail2">
+	<Page
+		title="{productName}"
+		showNavButton="true"
+		navButtonPress="onNavBack">
+		<content>
+			<f:SimpleForm title="{i18n>productDetailPageTitle}">
+				<f:content>
+					<Label text="{i18n>productIdLabel}"/>
+					<Text text="{productId}" />
+					<Label text="{i18n>productNameLabel}"/>
+					<Text text="{productName}" />
+				</f:content>
+			</f:SimpleForm>
+		</content>
+	</Page>
+</View>

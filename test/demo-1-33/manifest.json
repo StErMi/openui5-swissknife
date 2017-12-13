@@ -1,0 +1,140 @@
+{
+  "_version": "1.5.0",
+  "sap.app": {
+    "id": "demo",
+    "type": "application",
+    "i18n": "i18n/i18n.properties",
+    "applicationVersion": {
+      "version": "1.0.0"
+    },
+    "title": "{{appTitle}}",
+    "description": "{{appDescription}}",
+    "sourceTemplate": {
+      "id": "ui5template.basicSAPUI5ApplicationProject",
+      "version": "1.40.12"
+    },
+    "dataSources": {
+      "init_data": {
+        "uri": "model/data.json",
+        "type": "JSON"
+      }
+    }
+  },
+  "sap.ui": {
+    "technology": "UI5",
+    "icons": {
+      "icon": "",
+      "favIcon": "",
+      "phone": "",
+      "phone@2": "",
+      "tablet": "",
+      "tablet@2": ""
+    },
+    "deviceTypes": {
+      "desktop": true,
+      "tablet": true,
+      "phone": true
+    },
+    "supportedThemes": [
+      "sap_hcb",
+      "sap_belize"
+    ]
+  },
+  "sap.ui5": {
+    "rootView": {
+      "viewName": "demo.view.App",
+      "type": "XML"
+    },
+    "dependencies": {
+      "minUI5Version": "1.30.0",
+      "libs": {
+        "sap.ui.core": {},
+        "sap.m": {},
+        "sap.ui.layout": {},
+        "it.designfuture.swissknife": {}
+      }
+    },
+    "contentDensities": {
+      "compact": true,
+      "cozy": true
+    },
+    "models": {
+      "i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "settings": {
+          "bundleName": "demo.i18n.i18n"
+        }
+      },
+      "": {
+        "type": "sap.ui.model.json.JSONModel",
+        "dataSource": "init_data"
+      }
+    },
+    "resources": {
+      "css": [{
+        "uri": "css/style.css"
+      }]
+    },
+    "resourceRoots": {
+      "it.designfuture.swissknife": "./resources/it/designfuture/swissknife/"
+    },
+    "routing": {
+      "config": {
+        "routerClass": "sap.m.routing.Router",
+        "viewPath": "demo.view",
+        "controlId": "rootControl",
+        "viewType": "XML",
+        "bypassed": {
+          "target": "emptyDetails"
+        }
+      },
+      "routes": [{
+          "name": "master",
+          "pattern": "",
+          "target": [
+            "master",
+            "emptyDetails"
+          ]
+        },
+        {
+          "name": "orderDetails",
+          "pattern": "orders/:orderId:",
+          "target": [
+            "master",
+            "orderDetails"
+          ]
+        },
+        {
+          "name": "productDetails",
+          "pattern": "orders/:orderId:/products/:productId:",
+          "target": [
+            "master",
+            "productDetails"
+          ]
+        }
+      ],
+      "targets": {
+        "master": {
+          "viewName": "Master",
+          "controlAggregation": "masterPages",
+          "viewLevel": 0
+        },
+        "emptyDetails": {
+          "viewName": "EmptyDetail",
+          "controlAggregation": "detailPages",
+          "viewLevel": 1
+        },
+        "orderDetails": {
+          "viewName": "Detail1",
+          "controlAggregation": "detailPages",
+          "viewLevel": 1
+        },
+        "productDetails": {
+          "viewName": "Detail2",
+          "controlAggregation": "detailPages",
+          "viewLevel": 2
+        }
+      }
+    }
+  }
+}

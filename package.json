@@ -1,0 +1,38 @@
+{
+  "name": "openui5-swissknife",
+  "version": "0.0.1",
+  "description": "Extension of OpenUI5 Component.js and Controller.js to add utility methods",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/StErMi/openui5-swissknife"
+  },
+  "keywords": [
+    "openui5",
+    "sapui5",
+    "javascript"
+  ],
+  "author": {
+    "name": "Emanuele Ricci",
+    "email": "stermi@gmail.com"
+  },
+  "license": "Apache-2.0",
+  "scripts": {
+    "test": "echo \"Error: no test specified. Please add some.\" && exit 1",
+    "postinstall": "bower install",
+    "start": "grunt"
+  },
+  "devDependencies": {
+    "bower": "^1.8.0",
+    "connect-livereload": "^0.6.0",
+    "grunt": "^1.0.1",
+    "grunt-contrib-clean": "^1.0.0",
+    "grunt-contrib-connect": "^1.0.2",
+    "grunt-contrib-copy": "^1.0.0",
+    "grunt-contrib-jshint": "^1.1.0",
+    "grunt-contrib-uglify": "^2.2.0",
+    "grunt-contrib-watch": "^1.0.0",
+    "grunt-eslint": "^19.0.0",
+    "grunt-openui5": "^0.12.0"
+  }
+}

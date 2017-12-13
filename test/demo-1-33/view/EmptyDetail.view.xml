@@ -1,0 +1,19 @@
+<View
+	xmlns="sap.m"
+	xmlns:layout="sap.ui.layout">
+	<Page
+		title="{orderName}"
+		navButtonPress="onNavBack"
+		showNavButton="{device>/system/phone}">
+		<content>
+				<FlexBox
+					height="100px"
+					alignItems="Center"
+					justifyContent="Center">
+					<items>
+						<Text text="{i18n>emptyPageText}" />
+					</items>
+				</FlexBox>
+		</content>
+	</Page>
+</View>

@@ -1,0 +1,26 @@
+<View
+	xmlns="sap.m"
+	xmlns:layout="sap.ui.layout"
+	controllerName="demo.controller.Master">
+	<Page
+		title="{i18n>orderListPageTitle}">
+		<List id="orders" 
+				items="{/orders}"
+				mode="SingleSelectMaster"
+				selectionChange="onSelectionChange">
+			<items>
+				<StandardListItem title="{orderName}" 
+					type="Active"
+					info="{
+						path: 'orderStatus',
+						formatter: '.formatter.statusInfo'
+					}"
+					infoState="{
+						path: 'orderStatus',
+						formatter: '.formatter.statusInfoState'
+					}"
+					press="onSelectionChange"/>
+			</items>
+		</List>
+	</Page>
+</View>

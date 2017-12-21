@@ -44,8 +44,10 @@ sap.ui.define([
 				window.history.go(-1);
 			} else {
 				for( var [name, route] of Object.entries(this.getRouter()._oRoutes) ) {
-					if( route._oConfig.pattern === this.__homeRoute ) {
+					var toCompare = (this.__homeRoute === undefined || this.__homeRoute === null || this.__homeRoute === "") ? route._oConfig.pattern : route._oConfig.name;
+					if( toCompare === this.__homeRoute ) {
 						this.navTo(route._oConfig.name, this.__homeRouteParams, true);
+						break;
 					}
 				}
 			}

@@ -19,7 +19,7 @@ sap.ui.define([
 	     */
 		__initDevice: function() {
 			// set device model
-	        var deviceModel = new sap.ui.model.json.JSONModel(Device);
+	        var deviceModel = new JSONModel(Device);
 	        deviceModel.setDefaultBindingMode("OneWay");
 	        this.setModel(deviceModel, "device");
 		},

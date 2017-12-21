@@ -54,8 +54,9 @@ module.exports = function(grunt) {
 				options: {
 					configFile: './.eslintrc'
 				},
-	
-				demo: ['<%= dir.demo %>']
+				demo_1_49: ['<%= dir.demo_1_49 %>'],
+				demo_legacy: ['<%= dir.demo_legacy %>'],
+				demo_1_33: ['<%= dir.demo_1_33 %>']
 			},
 	
 			connect: {
@@ -79,12 +80,12 @@ module.exports = function(grunt) {
 				},
 				src: {
 					options: {
-						appresources: '<%= dir.demo_legacy %>'
+						appresources: '<%= dir.demo_1_49 %>'
 					}
 				},
 				dist: {
 					options: {
-						appresources: '<%= dir.demo_legacy %>'
+						appresources: '<%= dir.demo_1_49 %>'
 					}
 				}
 			},
@@ -96,7 +97,7 @@ module.exports = function(grunt) {
 							{ cwd: '<%= dir.src %>' }
 						],
 						dest: '<%= dir.dest %>',
-						compatVersion: '1.50',
+						compatVersion: '1.28',
 						compress: false
 					},
 					libraries: 'it/designfuture/swissknife'
@@ -119,7 +120,7 @@ module.exports = function(grunt) {
 		});
 	
 		// Linting task
-		grunt.registerTask('lint', ['eslint']);
+		grunt.registerTask('lint', ['eslint:demo_1_49', 'eslint:demo_legacy', 'eslint:demo_1_33']);
 	
 		// Build task
 		grunt.registerTask('build', ['clean', 'openui5_preload', 'copy:demo_1_49', 'copy:demo_legacy', 'copy:demo_1_33']);

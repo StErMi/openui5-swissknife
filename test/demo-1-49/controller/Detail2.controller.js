@@ -11,6 +11,8 @@ sap.ui.define([
 		///////////////////////////////////////////////////////////////////////
 
 		__targetName: "productDetails",
+        __homeRoute: "orderDetails",
+        __homeRouteParams: null,
 		
 		///////////////////////////////////////////////////////////////////////
 		//	LIFECYCLE EVENTS
@@ -18,6 +20,7 @@ sap.ui.define([
 
 		onRouteMatched: function(oEvent, routeName, orderId, productId) {
 			this.getView().bindElement("/orders/" + orderId + "/products/"+productId);
+			this.__homeRouteParams = {orderId: orderId};
 		},
 
 		///////////////////////////////////////////////////////////////////////

@@ -12,12 +12,6 @@
     "sourceTemplate": {
       "id": "ui5template.basicSAPUI5ApplicationProject",
       "version": "1.40.12"
-    },
-    "dataSources": {
-      "init_data": {
-        "uri": "model/data.json",
-        "type": "JSON"
-      }
     }
   },
   "sap.ui": {
@@ -63,10 +57,6 @@
         "settings": {
           "bundleName": "demo.i18n.i18n"
         }
-      },
-      "": {
-        "type": "sap.ui.model.json.JSONModel",
-        "dataSource": "init_data"
       }
     },
     "resources": {

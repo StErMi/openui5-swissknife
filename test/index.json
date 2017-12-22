@@ -1,0 +1,27 @@
+{
+	"it.designfuture.swissknife": {
+        "icon": "sap-icon://sap-ui5",
+        "name": "OpenUI5 Framework Swissknife",
+		"description": "Enhance OpenUI5 Controller.js and Component.js" ,
+		"source": "https://github.com/StErMi/openui5-swissknife",
+		"documentation": "https://github.com/StErMi/openui5-swissknife/blob/master/README.md",
+		"demo": "https://stermi.github.io/openui5-swissknife/test/demo-1-49/",
+		"version": "0.0.1",
+		"license": "Apache 2.0",
+		"content": {
+			"swissknife": {
+				"id": "swissknife",
+				"name": "OpenUI5 Framework Swissknife",
+				"type": "control",
+				"version": "0.0.1",
+				"description": "Enhance OpenUI5 Controller.js and Component.js",
+				"samples": [{
+					"id": "swissknife",
+					"name": "OpenUI5 Swissknife",
+					"description": "Enhance OpenUI5 Controller.js and Component.js" ,
+					"url": "https://stermi.github.io/openui5-swissknife/test/demo-1-49/"
+				}]
+			}
+		}
+	}
+}

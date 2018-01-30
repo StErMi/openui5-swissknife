@@ -7,13 +7,24 @@ sap.ui.define([
 	"use strict";
 	
 	return Controller.extend("it.designfuture.swissknife.Controller", {
+		
+		////////////////////////////////////////////////////////////
+		//	ATTRIBUTES
+		////////////////////////////////////////////////////////////
 
         __targetName: null,
-        __dialogs: null,
+        __dialogs: {},
         __homeRoute: "",
         __homeRouteParams: {},
+        
+        DEFAULT_DIALOG_ID: "___DEFAULT_DIALOG_ID___",
+		
+		////////////////////////////////////////////////////////////
+		//	LIFECYCLE
+		////////////////////////////////////////////////////////////
 		
 		onInit: function() {
+	        this.__dialogs = {};
 			if( this.__targetName !== undefined && this.__targetName !== null ) {
 				var targets = typeof this.__targetName === 'string' ? [this.__targetName] : this.__targetName;
 				for( var i = 0; i < targets.length; i++ ) {
@@ -21,6 +32,10 @@ sap.ui.define([
 				}
 			}
 		},
+		
+		////////////////////////////////////////////////////////////
+		//	METHODS
+		////////////////////////////////////////////////////////////
         
         /**
 		 * Return the app router
@@ -273,7 +288,6 @@ sap.ui.define([
 				onClose: onCloseCallback
 			});
 		},
-		
 
 		////////////////////////////////////////////////////////
 		//	EVENT BUS
@@ -314,7 +328,6 @@ sap.ui.define([
 			sap.ui.getCore().getEventBus().unsubscribe(channel, event, handler, listener);
 		},
 
-
 		////////////////////////////////////////////////////////
 		//	TOAST
 		////////////////////////////////////////////////////////
@@ -353,10 +366,15 @@ sap.ui.define([
          * @returns The created dialog
 		 */
 		createDialog: function (dialogId, dialogPath) {
+			if( dialogId === undefined || dialogId === null || dialogId === "" ) {
+				dialogId = this.DEFAULT_DIALOG_ID;
+			}
+			
             var dialog = this.__dialogs[dialogId];
 			if (!dialog) {
 				dialog = sap.ui.xmlfragment(this.getView().getId(), dialogPath, this);
 				this.getView().addDependent(dialog);
+				this.__dialogs[dialogId] = dialog;
 			}
 			return dialog;
 		},
@@ -367,6 +385,10 @@ sap.ui.define([
 		 * @param {string} dialogId Dialog ID
 		 */
 		destroyDialog: function(dialogId) {
+			if( dialogId === undefined || dialogId === null || dialogId === "" ) {
+				dialogId = this.DEFAULT_DIALOG_ID;
+			}
+			
             var dialog = this.__dialogs[dialogId];
 			if (dialog) {
 				if( dialog.close ) {
@@ -384,29 +406,30 @@ sap.ui.define([
         /**
 		 * Create a Popover
 		 * @public
+		 * @param {string} dialogId Dialog ID
 		 * @param {string} popoverPath Path to the Popover XML path
+		 * @param {object} openByElement Element to bind the popover to
          * @returns The created Popover
 		 */
-		createPopover: function (popoverPath) {
-			if (!this.__popover) {
-				this.__popover = sap.ui.xmlfragment(this.getView().getId(), popoverPath, this);
-				this.getView().addDependent(this.__popover);
+		createPopover: function (popoverId, popoverPath, openByElement) {
+			var popover = this.createDialog(popoverId, popoverPath);
+			
+			// delay because addDependent will do a async rerendering and the popover will immediately close without it
+			if( openByElement ) {
+				jQuery.sap.delayedCall(0, this, function () {
+			    	popover.openBy(openByElement);
+			    });
 			}
-			return this.__popover;
+			return popover;
 		},
-        
+		
         /**
-		 * Destroy a Popover
+		 * Destroy a popover
 		 * @public
+		 * @param {string} popoverId Popover ID
 		 */
-		destroyPopover: function() {
-			if (this.__popover) {
-				if( this.__popover.close ) {
-					this.__popover.close();
-				}
-				this.__popover.destroy();
-				this.__popover = null;
-			}
+		destroyPopover: function(popoverId) {
+			this.destroyDialog(popoverId);
 		}
 		
 	});
